@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+.MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+}
+
+.MuiFormLabel-root, .MuiInputLabel-root {
+  color: white !important;
+}
+
+.MuiFormControl-root, .MuiTextField-root {
+  background-color: #280f46 !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

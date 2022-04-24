@@ -1,24 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import { useLocation, Routes, Route } from 'react-router-dom';
+import Feed from './components/feed';
+import NewPost from './components/newpost';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Test
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <Routes>
+    <Route path='/' element={<Feed/>} replace/>
+      <Route path='*'
+        element={<Feed/>} replace/>
+    <Route path="new" element={<NewPost/>}/>
+   </Routes>
   );
 }
 
