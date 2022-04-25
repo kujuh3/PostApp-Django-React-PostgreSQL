@@ -5,9 +5,10 @@ import Container from '@mui/material/Container'
 import axios from 'axios';
 import { makeStyles } from '@mui/styles';
 import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
+import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
 import { Editor } from '@tinymce/tinymce-react';
+import Button from '@mui/material/Button';
 
 const useStyles = makeStyles({
     card: {
@@ -51,14 +52,17 @@ function App() {
     "PostDate": date,
     "PostUpdateDate": date,
     "PostContent": "",
-    "PosterId": null
+    "PosterId": 0
   });
 
   const postPost = async () => {
       try {
           const resp = await axios.post("http://127.0.0.1:8000/posts", newPost);
+          alert("Post succesful!")
+          window.location.href = "/"
           console.log(resp.data);
       } catch (err) {
+          alert("Error while posting.")
           console.log(err);
       }
   }
@@ -74,10 +78,11 @@ function App() {
     <>
     <Container>
         <div style={{marginTop:"10%"}}>
-            <TextField sx={{ input: {color: "white"}}} style={{marginBottom: "5px"}} fullWidth label="Title"></TextField>
+            <TextField onChange={(e) => (setNewPost({...newPost, PostName : e.target.value}))} sx={{ input: {color: "white"}}} style={{marginBottom: "5px"}} fullWidth label="Title"></TextField>
             <Editor
             onInit={(evt, editor) => editorRef.current = editor}
-            initialValue="<p>This is the initial content of the editor.</p>"
+            initialValue=""
+            onEditorChange={(e) => (setNewPost({...newPost, PostContent : e}))}
             init={{
             height: 500,
             menubar: false,
@@ -92,7 +97,10 @@ function App() {
             'removeformat | help',
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
-        />
+            />
+            <Button onClick={() => postPost()} sx={{marginTop: "5px", backgroundColor: "#280f46"}} variant="contained" endIcon={<SendIcon />}>
+                Send
+            </Button>
        </div>
     </Container>
    <div className={styles.background}></div>
