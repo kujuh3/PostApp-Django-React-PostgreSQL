@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'rpdp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ListAppDB',
-        'USER' : 'postgres',
-        'PASSWORD' : 'Juhojuho44-',
+        'NAME': 'YOURDB',
+        'USER' : 'YOURUSERNAME',
+        'PASSWORD' : 'YOURPASSWORD',
         'HOST' : 'localhost',
         'PORT' : '5432'
     }
